@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Pacifico&display=swap');
+*{
+    box-sizing: border-box;
+}
+:root{
+    --white:#f3f3f3;
+    --darkbg:#121212;
+    --redbg:#C41539;
+    --logo_light_pink:#FF6CA1;
+    --logo_dark_pink:#E62A45;
+    --btn_light_gray:#D1D1D1;
+    --btn_dark_gray:rgb(50, 49, 49);
+    
+   
+
+}
+h1,h2, h3, input,footer,a, label, p {
+    font-family:'Inter', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;   
+    color:var(--white); 
+}
+body#splash{
+    background-color: var(--redbg);
+}
+body#signIn,body#signUp{
+    background-color: var(--darkbg);
+}
+body{
+    background-color: var(--darkbg);
+}
+a,footer{
+    text-decoration: none;
+    color: var(--white);
+}
+/* main */
+main{
+    padding:1rem 2rem;
+}
+/* nav */
+nav{
+    position: fixed;   
+    /* z-index: 99; */
+    background-color: var( --btn_dark_gray);
+    bottom: 0;
+    width:100%;
+    
+}
+nav ul{
+    display:flex;
+    justify-content: space-around;
+    width:100%;
+    padding:0;
+}
+nav li{
+    list-style-type: none;
+  
+}
+nav ul li img{
+    width:2rem;
+
+}
+/* btn */
+.btn{
+    width: 2rem;
+    height: auto;
+}
+/* form */
+
+input[type="text"],input[type="date"], select{
+    color:var(--white);
+    padding: 0 1rem;
+}
+input[type="text"]::placeholder{
+    color:var(--white);
+}
+
+/* footer */
+footer{
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: var(--redbg);
+}
+footer>div{
+    display: flex;
+    flex-direction: column;
+}
+footer>img{
+    width: 15rem;
+}

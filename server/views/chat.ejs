@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live-Chatting-App</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&display=swap');
+    main{
+      width: 60ch;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h1{
+      font-family: 'Nunito', sans-serif;
+    }
+    #chating{
+      padding:0;
+    }
+    #chating>li{
+      padding:.5rem;
+      width: 35ch;
+      margin: .5rem auto;
+      list-style-type: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+    }
+    #chating>li:nth-child(odd){
+      background-color: #fdc2c2;
+      text-align: left;
+    }
+    #chating>li:nth-child(even){
+      background-color: #9ef5cc;
+      text-align: right;
+    }
+
+  </style>
+</head>
+<body>
+  <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+  <main>
+    <h1>Live chatting app</h1>
+    <ul id="chating"></ul>
+    <input type="text" name="inputData" id="userInput">
+    <button id="msgSend">Send</button>
+  </main>
+  <script>
+    var socket = io();
+    msgSend.addEventListener('click',()=>{
+      socket.emit('userMSG',document.querySelector('#userInput').value)
+      document.querySelector('#userInput').value = '';
+    })
+    var chatCount = 0;
+    socket.on('broadcast',(sData)=>{
+      let chatList = document.createElement('li');
+      chatList.id = 'eachChat_'+chatCount;
+      chating.appendChild(chatList);
+      document.querySelector(`#eachChat_${chatCount}`).innerHTML = sData;
+      chatCount++;
+    })
+  </script>
+</body>
+</html>

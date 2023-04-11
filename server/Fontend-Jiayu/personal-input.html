@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetLink | Personal Information</title>
+   <link rel="stylesheet" href="../public/css/style.css">
+   <link rel="stylesheet" href="../public/css/base.css">
+</head>
+<body id="userInfo">
+    <header> 
+       <!--<a href="#"><img src="images/icons/back.png" alt="back to last Page" class="btn back_btn"></a>  -->
+      <h1> Personal Information</h1></header>
+     <main>
+      <div class="form-container_2" >
+        <form action="#">
+         
+            <input type="text" id="first-name" name="owner-first-name" placeholder="Owner's First Name">
+
+           
+            <input type="text" id="last-name" name="owner-last-name" placeholder="Owner's Last Name">
+            <div class="pet_box dob">
+            <label for="dob" style="display: inline-block;">Date of Birth</label>
+            <input type="date" id="dob" name="/-of-birth" >
+            </div>
+
+           
+            <input type="text" id="location" name="location" placeholder="Location">
+            <div class="pet_box">
+            <label style="display: block;">I have a</label>
+            <div>
+            <input type="radio" id="dog" name="pet-type" value="dog" class="l-radio">
+            <label for="dog" >Dog</label>
+            </div>
+            <div>  
+            <input type="radio" id="cat" name="pet-type" value="cat" class="l-radio">
+            <label for="cat">Cat</label>
+          </div>
+            </div>
+            <!-- <label for="pet-name" >Pet's Name:</label> -->
+            <input type="text" id="pet-name" name="pet-name" placeholder="Pet's Name">
+          
+            <!-- <label for="pet-gender">Pet's Gender:</label> -->
+            <select id="pet-gender" name="pet-gender">
+             
+              <option value="" selected> -- Pet's Gender -- </option>
+              <option value="girl">Girl</option>
+              <option value="boy">Boy</option>
+            </select>
+<!-- 
+            <label for="pet-neuter-status">Pet's Neuter/Spay Status:</label> -->
+            <select id="pet-neuter-status" name="pet-neuter-status">
+              <option value="">Pet's Neuter/Spay Status</option>
+              <option value="neutered-spayed">My pet is neutered/spayed</option>
+              <option value="not-neutered-spayed">My pet is not neutered/spayed</option>
+            </select>
+
+            <!-- <label for="interested-in">I'm interested in:</label> -->
+            <select id="interested-in" name="interested-in">
+              <option value="">I'm interested in...</option>
+              <option value="pet-play-dates">Only pet play dates</option>
+              <option value="rescue-animal">Only rescuing an animal</option>
+              <option value="play-dates-and-rescue">Play dates and/or rescuing an animal</option>
+            </select>
+            <input type="submit" value="Save Information" />
+        </form>
+        </div>
+       
+     </main>
+     
+   <!-- <% include nav.html %> -->
+   <nav>
+    <ul>
+        <li><a href="profile.ejs"><img src="../public/images/icons/person.png" alt="personal information"></a></li>
+        <li><a href="chat.ejs"><img src="../public/images/icons/chat.png" alt="Chat"></a></li>
+        <li> <a href="match.ejs"><img src="../public/images/icons/heart.png" alt="Matching "></a></li>
+        <li> <a href="info.ejs"><img src="../public/images/icons/report.png" alt="info"></a></li>
+    </ul>
+        
+</nav>
+    
+</body>
+</html>
