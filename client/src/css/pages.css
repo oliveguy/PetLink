@@ -1,0 +1,14 @@
+/* header */
+header{
+    justify-content: space-evenly;
+    background-color: var(--darkbg);
+    width:100%;
+}
+ .header_btn{
+    width: 2rem;
+
+ }
+ /* main */
+ main{
+    padding-top:5rem;
+ }

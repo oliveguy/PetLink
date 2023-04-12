@@ -7,6 +7,7 @@
     --darkbg:#121212;
     --redbg:#C41539;
     --logo_light_pink:#FF6CA1;
+    --chat_bg:#FF9CAF;
     --logo_dark_pink:#E62A45;
     --btn_light_gray:#D1D1D1;
     --btn_dark_gray:rgb(50, 49, 49);
@@ -14,11 +15,20 @@
    
 
 }
-h1,h2, h3, input,footer,a, label, p {
+h1,h2, h3, h4, input,footer,a, label, p, li {
     font-family:'Inter', 'Arial Narrow', Arial, sans-serif;
     font-weight: 400;   
     color:var(--white); 
 }
+p, li{
+    line-height: 1.6;
+}
+
+.text_centre{
+    text-align: center;
+
+}
+
 body#splash{
     background-color: var(--redbg);
 }

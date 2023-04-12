@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Pacifico&display=swap');
+*{
+    box-sizing: border-box;
+}
+:root{
+    --white:#f3f3f3;
+    --darkbg:#121212;
+    --redbg:#C41539;
+    --logo_light_pink:#FF6CA1;
+    --chat_bg:#FF9CAF;
+    --logo_dark_pink:#E62A45;
+    --btn_light_gray:#D1D1D1;
+    --btn_dark_gray:rgb(50, 49, 49);
+}
+h1,h2, h3, h4, input,footer,a, label, p, li {
+    font-family:'Inter', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;   
+    color:var(--white); 
+}
+p, li{
+    line-height: 1.6;
+}
+
+.text_centre{
+    text-align: center;
+
+}
+
+div#splash_main{
+    background-color: var(--redbg);
+}
+body#signIn,body#signUp{
+    background-color: var(--darkbg);
+}
+body{
+    background-color: var(--darkbg);
+}
+a,footer{
+    text-decoration: none;
+    color: var(--white);
+}
+/* main */
+main{
+    padding:1rem 2rem;
+}
+
+/* btn */
+.btn{
+    width: 2rem;
+    height: auto;
+}
+/* accordin */
+.accordion {
+    background-color: var(--btn_dark_gray);
+    color: var(--white);
+    cursor: pointer;
+    /* padding: 18px; */
+    width: 100%;
+    height:2rem;
+    padding: 1rem 0 2rem 1rem;
+    border: none;
+    text-align: left;
+    outline: none;
+    /* font-size: 15px; */
+    transition: 0.4s;
+  }
+  .accordion:first-of-type{
+    border-radius: 1rem 1rem 0 0 ;
+  }
+  .accordion:last-of-type{
+    border-radius:  0 0 1rem 1rem ;
+  }
+  
+  .active, .accordion:hover {
+    background-color: var(--btn_light_gray);
+    color:var(--darkbg);
+  }
+  
+  .panel {
+    padding: 0 1rem;
+    display: none;
+    background-color: var(--btn_dark_gray);
+    overflow: hidden;
+    color: var(--white);
+  }
+/* form */
+
+input[type="text"],input[type="date"], select{
+    color:var(--white);
+    padding: 0 1rem;
+}
+input[type="text"]::placeholder{
+    color:var(--white);
+}
+
+/* footer */
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--redbg);
+    padding: 1rem;
+}
+footer > p{
+    margin: 0 auto;
+    margin-top:.5rem;
+    font-size: .75rem;
+}
+
+
+footer>img{
+    width: 80px;
+}

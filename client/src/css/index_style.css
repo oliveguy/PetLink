@@ -1,0 +1,33 @@
+#splash_main{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    padding:25vh 0;
+    height:100vh;
+}
+#splash_main > img:first-of-type{
+    width:50vw;
+    
+}
+#splash_main > img:nth-child(2){
+    width:30vw;
+}
+#splash_main > a{
+    border-radius: 5px;
+    width: 50%;
+    padding: 0.75rem 0rem;
+    text-align: center;
+    font-size: 0.75rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+#splash_main > a:first-of-type{
+    background-color: var(--btn_light_gray);
+    color:var(--darkbg);
+
+}
+#splash_main  a:nth-of-type(2){
+
+background-color: var(--darkbg);
+}

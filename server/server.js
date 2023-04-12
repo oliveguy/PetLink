@@ -1,14 +1,10 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
+const path = require('path');
 const DBURL = process.env.MONGODB;
 const mongoose = require('mongoose');
-const router = express.Router();
-
-// chat const set
 const http = require('http').createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(http);
 
 // MONGO DB Connection
 let db = mongoose.connection;
@@ -21,38 +17,29 @@ mongoose.connect(DBURL, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 })
+
+// POST
 app.use(express.urlencoded({ extended: true })); // req.body 전송 시 필수 !!
 app.use(express.json()); // req.body 전송 시 필수 !!
-app.set('view engine', 'ejs');
+
 app.use(express.static("public"));
 
-// ~/USER ROUTING()
-app.use("/user", require("./routes/user.js"));
-// ~/MAIN ROUTING()
-app.use("/main", require("./routes/main.js"));
-// ~CHAT ROUTING()
-// app.use("/chat", require("./routes/chat.js"));
+// API
+  // ~/USER ROUTING()
+  app.use("/user", require("./routes/user.js")); // signup(POST) / login(POST) / register photos(POST)
+  // ~/MAIN ROUTING()
+  app.use("/main", require("./routes/main.js")); // view profile(GET)-change PW-photo(UPDATE) / chat history(GET) / user-pet listing(GET)
+  // ~CHAT ROUTING()
+  app.use("/chat", require("./routes/chat.js")); // chat list(GET) / Socket.io connect / 
 
 
-// First Landing page
+// First Landing page to React App
+// app.js & React routing
+app.use(express.static(path.join(__dirname, '../client/build')));
 app.get('/', (req,res)=>{
-  res.render('index.ejs');
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 })
 
-/////////// CHAT START
-app.get("/chat",(req,res)=>{
-  res.render('chat.ejs')
-})
-io.on('connection',(socket)=>{
-  console.log('A user connected')
-
-  socket.on('userMSG',(data)=>{
-    console.log(`server recieved: ${data}`)
-    io.emit('broadcast',data)
-  })
-
-})
-/////////// CHAT END
 
 http.listen(8080,()=>{
   console.log('listening on 8080');
@@ -93,3 +80,6 @@ http.listen(8080,()=>{
 // https://poiemaweb.com/nodejs-socketio
 // +React
 // https://youngbean96.tistory.com/2
+
+// Mock-up
+// https://www.figma.com/file/qfnSgksEjkeVekaadToNa2/capstone?node-id=0-1&t=poE1KzKLltF5L0eq-0

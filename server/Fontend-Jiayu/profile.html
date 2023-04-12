@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetLink| Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body id="setting">
+    <!-- <% include header.html %> -->
+    <header>
+        <a href="#"><img src="../public/images/icons/back_btn.svg" alt="back" class="header_btn"></a>
+        <a href="main.ejs"><img src="../public/images/logo/PetLink-wordmark-red.svg" alt=""></a>
+        <a href="#"><img src="../public/images/icons/more_btn.svg" alt="more" class="header_btn"></a>
+    </header>
+    <main>
+        <section>
+            <h1>My Profile</h1>
+            <div id="user_pic_wrap">
+            <div class="user_pic" id="profile_user">
+               <img src="../public/images/photos/user_1.jpg" alt="">  
+            </div>
+            <div class="user_pic" id="profile_pet"> <img src="../public/images/photos/puppy.jpg" alt=""></div>
+            </div>
+        </section>
+        <section>
+            
+            <button class="accordion">Change Personal Information<span class="expand-icon">+</span></button>
+            
+            <div class="panel">
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <label for="profile-pic">Choose a profile picture:</label>
+                    <input type="file" id="profile-pic" name="profile-pic">
+                    <input type="submit" value="+">
+                  </form>
+                  <form action="#" method="post" enctype="multipart/form-data">
+                    <label for="pet_profile-pic">Choose a profile picture:</label>
+                    <input type="file" id="pet_profile-pic" name="pet_profile-pic">
+                    <input type="submit" value="+">
+                  </form>  
+                  <form action="#" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required><br><br>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br><br>
+                    
+                    <label for="password">New Password:</label>
+                    <input type="password" id="password" name="password" required><br><br>
+                    
+                    <input type="submit" value="Update">
+                  </form>
+          
+            </div>
+    
+            <button class="accordion">Geo Settings & Preferences<span class="expand-icon">+</span></button>
+            <div class="panel">
+                <form>
+                    <label for="distance">Distance Range:</label>
+                    <input type="range" id="distance" name="distance" min="0" max="100" value="50"><br><br>
+                  
+                    <label for="pet-type">Preferred Pet Type:</label><br>
+                    <input type="radio" id="cat" name="pet-type" value="cat">
+                    <label for="cat">Cat</label><br>
+                    <input type="radio" id="dog" name="pet-type" value="dog">
+                    <label for="dog">Dog</label><br><br>
+                  
+                    <input type="submit" value="Save Settings">
+                  </form>
+            </div>
+    
+            <button class="accordion">Privacy Settings<span class="expand-icon">+</span></button>
+            <div class="panel">
+                <h3>Privacy Statement</h3>
+                <p>We take your privacy seriously and are committed to protecting your personal information. When you sign up for our Pet Dating App, we collect basic information such as your name, email address, and pet preferences. This information is used to match you with other pet owners in your area and improve your overall experience on the app. We will never share your personal information with third parties without your consent.</p>
+                <p>In addition to basic information, we may collect data on your app usage, such as the number of matches you receive and the frequency of your logins. This information is used to improve the app's performance and offer better recommendations for potential matches. We may also use cookies and other tracking technologies to personalize your experience on the app. If you have any questions or concerns about our Privacy Statement, please don't hesitate to contact us. We value your feedback and are committed to providing a safe and enjoyable experience for all of our users.</p>
+                <form>
+                    <label for="policy-agree">
+                      <input type="checkbox" id="policy-agree" name="policy-agree" required>
+                      I have read and agree to the <a href="#">Privacy Policy</a>.
+                    </label>
+                    <button type="submit">Submit</button>
+                  </form>
+
+            <!--  form: privacy statement, legal information-->
+            </div>
+            <button class="accordion">Notifications<span class="expand-icon">+</span></button>
+            <div class="panel">
+            <form action="">
+                <label>
+                    <input type="radio" name="status" value="on">
+                    On
+                  </label>
+                  <label>
+                    <input type="radio" name="status" value="off">
+                    Off
+                  </label>
+            </form>
+            </div>
+            </section>
+    </main>
+    <!-- <% include nav.html %> -->
+    <nav>
+        <ul>
+            <li><a href="profile.ejs"><img src="images/icons/person.png" alt="personal information"></a></li>
+            <li><a href="communication.ejs"><img src="images/icons/chat.png" alt="Communication"></a></li>
+            <li> <a href="match.ejs"><img src="images/icons/heart.png" alt="Matching "></a></li>
+            <li> <a href="info.ejs"><img src="images/icons/report.png" alt="info"></a></li>
+        </ul>
+    </nav>
+    <script src="js/main.js"></script> 
+</body>
+</html>

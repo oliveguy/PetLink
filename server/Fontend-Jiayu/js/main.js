@@ -12,3 +12,11 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
+
+var igotit_btn = document.getElementById("close_btn");
+var instruction = document.getElementById("instruction");
+var bg = document.getElementById("form_bg");
+igotit_btn.addEventListener("click", function(){
+  instruction.style.display="none";
+  bg.classList.remove('bg_blur');
+})

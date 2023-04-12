@@ -16,7 +16,7 @@ body#signIn header img{
     width: 30vw;
 }
 /* signIn */
-body#signIn{
+body#signIn, body#signUp{
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -76,7 +76,38 @@ body#signIn h1{
     color:var(--darkbg);
 
 }
+/* instration cards from personal-input html*/
+#instruction{
+    position: absolute;
+    z-index: 999;
+    top: 10%;
 
+
+}
+#instruction div{
+    width: 80vh;
+    border-radius: 3rem;
+    border: 2rem solid var(--redbg);
+    background-color: var(--darkbg);
+    padding: 1rem;
+    width: 80vw;
+    height: 70vh;
+    margin:0 auto;
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#instruction div img{
+    width:10vh;
+    align-self: center;
+    
+}
+/* blur effect:  */
+
+.bg_blur{
+    filter: blur(2px);
+}
 
 /* uerserInfo */
 body#userInfo h1{
@@ -84,6 +115,9 @@ body#userInfo h1{
 }
 body#userInfo main{
     height: 100vh;
+    position: fixed;
+
+    /* if  */
 }
 body#userInfo form input[type="text"],body#userInfo form select, body#userInfo form input[type="submit"],body#userInfo form input[type="date"] {
 background-color: var(--btn_dark_gray);
@@ -183,3 +217,278 @@ scroll-behavior: smooth;
 display: flex;
 justify-content: space-evenly;
 }
+/* main.html */
+body#home h1{
+    text-align: center;
+}
+.recent_event{
+    background-color: var(--btn_dark_gray);
+    padding: 1rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* align-items: flex-start; */
+    
+}
+/* body#home .recent_event>div{
+    
+} */
+.recent_event>div{
+    height: 40vh;
+    overflow-x: hidden;
+}
+.recent_event>img{
+   position: relative;
+   z-index: 99;
+   width: 1rem;
+ padding-top: .5rem;
+}
+
+
+.event_notice{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border-radius: 5rem; */
+    /* padding-bottom: 1rem; */
+
+}   
+.event_notice p{
+    width: 70%;
+}
+.event_notice img{
+    border-radius: 5rem;
+    width: 3rem;
+    height: 3rem;
+}
+#find_box_wrap{
+    display:flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+.find_box{
+    border-radius: 1rem;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width:20rem;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    margin-left: 1rem;
+}
+.find_text{
+    background-color: var(--btn_dark_gray);
+    padding:1rem
+}
+.find_text h3{
+    margin: 0;
+}
+#dog_park{
+    height: 40vh;
+    padding-bottom: 30rem;
+}
+#dog_park div{
+    width: 90%;
+    height: 30vh;
+
+}
+
+/* communication */
+.event_chat{
+    width:70%;
+    /* height: 4rem; */
+}
+.event_chat h3{
+    font-size: 1rem;
+    font-weight: 600;
+}
+.event_chat p{
+    font-size: 1rem;
+    width: 100%;
+}
+.event_chat_img{
+    width: 30%;
+}
+#activity{
+   
+    padding-bottom:10rem ;
+}
+/* profile */
+body#setting h1{
+    text-align: center;
+}
+#user_pic_wrap{
+    display: flex;
+    justify-content: space-around;
+    height: 30vh;
+
+}
+.user_pic{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 10rem;
+    /* border: 1px solid red; */
+    overflow: hidden;
+}
+.user_pic>img{
+    max-width: 100%;
+    /* max-height: 100%;
+    object-fit:cover; */
+}
+#profile_pet{
+    width: 8rem;
+    height: 8rem;
+    align-self: flex-end;
+}
+.accordion>span{
+    text-align: left;
+}
+button.accordion {
+    cursor: pointer;
+    padding: 12px 18px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    transition: 0.4s;
+    position: relative;
+    height: 3rem;
+  }
+  
+
+  
+  button.accordion.active {
+    background-color: var(--btn_light_gray);
+  }
+  
+  button.accordion .expand-icon {
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+    font-weight: lighter;
+    font-size: 2rem;
+    transition: .5s;
+  }
+  
+  button.accordion.active .expand-icon {
+    transform: translateY(-50%) rotate(45deg);
+  }
+  /* for profolie */
+  section:last-of-type{
+    padding-top:2rem;
+    padding-bottom:10rem ;
+  }
+  /* chat */
+  body#chat h1{
+    text-align: center;
+   
+  }
+  #chat_box{
+    color:white;
+    background-color: var(--btn_dark_gray);
+    border-radius: 2rem;
+    height: 55vh;
+    
+  }
+  #chat_box_wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* border:1px solid paleturquoise; */
+    height: 65vh;
+  }
+  .chat-header h2{
+    text-align: center;
+    color:var(--logo_light_pink)
+  }
+
+
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .chat-header {
+    
+    padding: 1rem;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    overflow-y: scroll;
+    padding: 10px;
+    width: 90%;
+    margin: 0 auto;
+   
+  }
+  
+  .message {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+
+  }
+ .receiver{
+    flex-direction: row-reverse;
+ }
+ .sender  .message-user{
+    margin-right: 10px;
+ }
+ .receiver  .message-user{
+    margin-left: 10px;
+ }
+  .message-user {
+
+     width: 3rem;
+     height: 3rem; 
+  }
+  
+  .message-text {
+    flex: 1;
+    padding: 0 1rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+   
+  }
+  .message-text p{
+    color:var(--darkbg);
+    line-height: 1.3;
+  }
+  .receiver  .message-text{
+    background-color: var(--chat_bg);
+  }
+  
+  .chat-input {
+    background-color: var(--btn_dark_gray);
+    padding: 10px;
+    border-radius: 5rem;
+    
+  }
+  
+  .chat-input form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .chat-input input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .chat-input button[type="submit"] {
+    background-color:var(--redbg);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3rem;
+  } 
+  

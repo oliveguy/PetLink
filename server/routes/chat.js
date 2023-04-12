@@ -10,11 +10,21 @@ const io = new Server(http);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// router.get("/",(req,res)=>{
-//   res.render('chat.ejs')
-// })
-// io.on('connection',()=>{
-//   console.log('a user connected')
-// })
+router.get("/",(req,res)=>{
+  res.render('chat.ejs')
+})
+
+/////////// CHAT START
+
+io.on('connection',(socket)=>{
+  console.log('A user connected')
+
+  socket.on('userMSG',(data)=>{
+    console.log(`server recieved: ${data}`)
+    io.emit('broadcast',data)
+  })
+
+})
+/////////// CHAT END
 
 module.exports = router;
