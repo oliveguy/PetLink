@@ -68,7 +68,7 @@ h1.LS-title{
 .form-container input:first-of-type {
   border-top: none;
 }
-.form-container input::placeholder {
+.form-container input::placeholder,textarea.intro {
   color: var(--btn_light_gray);
   font-size: .8rem;
   text-align: center;
@@ -139,7 +139,8 @@ body#userInfo main {
 div.personalInfo input[type="text"],
 select,
 div.personalInfo input[type="submit"],
-div.personalInfo input[type="date"] {
+div.personalInfo input[type="date"],
+textarea.intro {
   background-color: var(--btn_dark_gray);
   width: 100%;
   height: 3rem;
@@ -147,12 +148,35 @@ div.personalInfo input[type="date"] {
   border: none;
   margin-bottom: 0.5rem;
 }
+textarea.intro{
+  color:#fff;
+  font-weight: bold;
+  height: 5rem;
+  padding: .5rem;
+  font-family: 'Inter', 'Arial Narrow', Arial, sans-serif;
+}
+textarea.intro::placeholder{
+  line-height: 4rem;
+  color:#fff;
+  font-weight: 500;
+  font-family: 'Inter', 'Arial Narrow', Arial, sans-serif;
+}
+textarea.intro::-moz-placeholder { /* Mozilla Firefox 19+ */
+  line-height:4rem;
+}
+textarea.intro::-webkit-input-placeholder { /* Webkit */
+  line-height:4rem;
+}
+textarea.intro:-ms-input-placeholder { /* IE */
+  line-height:4rem;
+}
 div.personalInfo > input, option{
   font-size: .85rem;;
 }
 div.personalInfo input[type="text"]:focus,
 div.personalInfo input[type="submit"]:focus,
-div.personalInfo input[type="date"]:focus {
+div.personalInfo input[type="date"]:focus,
+textarea.intro:focus {
   outline: none;
 }
 body#userInfo form input[type="date"] {
@@ -174,6 +198,8 @@ label.photoUpload{
 div.personalInfo form input[type="submit"] {
   background-color: var(--btn_light_gray);
   color: var(--darkbg);
+  width:60%;
+  font-weight: bold;
 }
 .l-radio {
   accent-color: var(--redbg);
@@ -209,35 +235,41 @@ body#info main {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  height: 100%;
 }
 
 .carousel_container > .user_card {
   scroll-snap-align: start;
   flex-shrink: 0;
-  width: 20rem;
+  width: 100%;
+  height:100%;
   transform-origin: center center;
   transform: scale(1);
   transition: transform 0.5s;
   position: relative;
-}
-.user_card {
-  width: 20rem;
-  /* height: 100vh; */
-}
-.photo_container {
-  position: relative;
-  width: 20rem;
-  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
   border-radius: 2rem 2rem 0 0;
 }
+
+.photo_container {
+  width: 100%;
+  height:auto;
+  overflow: hidden;
+  border-radius: 2rem 2rem 0 0;
+  display:flex;
+  background-color: #fff;
+}
 .photo_container > img {
-  position: absolute;
+  /* position: absolute;
   top: -9999px;
   left: -9999px;
   right: -9999px;
-  bottom: -9999px;
+  bottom: -9999px; */
   margin: auto;
+  width: 100%;
 }
 .text_container {
   width: 100%;
@@ -515,19 +547,27 @@ body#chat h1 {
 
 /* Personal Information */
 div.personalInfo{
-  padding: 0 3rem;
+  padding: 0 2rem;
   display:flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 1rem;
 }
-div.personalInfo > div.cat-dog{
+form.signupForm{
+  display:flex;
+  flex-direction: column;
+  width:100%;
+  align-items: center;
+}
+div.personalInfo > form.signupForm > div.cat-dog{
   width: 100%;
   display:flex;
   justify-content: space-around;
   color:#fff;
 }
-
+span.signupMsg{
+  color:#fff;
+}
 header.home{
   display:flex;
   justify-content: space-around;
@@ -581,4 +621,7 @@ nav.HomeNav ul li img{
 div.homeComponent{
   padding: 1rem;
   height: 100%;
+}
+div.match{
+  padding: 1.5rem;
 }

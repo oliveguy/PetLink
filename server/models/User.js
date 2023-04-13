@@ -4,12 +4,10 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   owner:{
     fName:{
-          type: String,
-          required: true
+      type: String
     },
     lname:{
-      type: String,
-      required: true
+      type: String
     },
     email:{
       type: String,
@@ -21,34 +19,27 @@ const userSchema = new Schema({
       required: true
     },
     dob:{
-      type: String,
-      required: true
+      type: String
     },
-    location:{
-      type: String,
-      required: true
+    photo:{
+      type: String
     }
   },
   pet:{
     kind:{
-      type: String,
-      required: true
+      type: String
     },
     name:{
-      type: String,
-      required: true
+      type: String
     },
     gender:{
-      type: String,
-      required: true
+      type: String
     },
     pstatus:{
-      type: String,
-      required: true
+      type: String
     },
     interest:{
-      type: String,
-      required: true
+      type: String
     }
   }
 })

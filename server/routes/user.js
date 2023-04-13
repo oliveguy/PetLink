@@ -8,9 +8,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // SIGNUP Page
-  router.get("/signup",(req,res)=>{
-    res.send('register page');
-  })
   router.post("/signup",(req,res)=>{
     async (req, res) => {
       const { userID, userPWD, userName, userEmail, loginInfo} = req.body;

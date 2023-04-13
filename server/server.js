@@ -83,3 +83,9 @@ http.listen(8080,()=>{
 
 // Mock-up
 // https://www.figma.com/file/qfnSgksEjkeVekaadToNa2/capstone?node-id=0-1&t=poE1KzKLltF5L0eq-0
+
+// TO do
+// Back-end
+// - Signup / Login
+// Chatting
+// Front-end

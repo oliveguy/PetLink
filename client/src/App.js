@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate, Outlet, Switch } from 'react-router-dom';
+import axios from 'axios';
 
 import './css/base.css';
 import './css/index_style.css';
@@ -52,7 +53,12 @@ function App() {
     return (
       <div id="signUp">
         <header>
-          <img src="/img/logo/PetLink-logo.svg" className="signupLogo" alt="petlink logo" onClick={()=>{navigate("/")}}/>
+          <img
+            src="/img/logo/PetLink-logo.svg"
+            className="signupLogo"
+            alt="petlink logo"
+            onClick={()=>{navigate("/")}}
+          />
         </header>
         <Outlet></Outlet>
         <footer>
@@ -79,15 +85,57 @@ function App() {
     )
   }
   function Signup(){
+    const [input_userEmail, setEmail] = useState('');
+    const [input_userPWD, setPWD] = useState('');
+
+    const [reTypePWD, setRetypePWD] = useState('');
+    const [signupMsg, setSignupMsg] = useState('');
+
+    const handleSubmit = (e)=>{
+      e.preventDefault();
+      if(input_userPWD === ''|| reTypePWD ===''){
+        setSignupMsg('Enter your ID or password')
+      } else if(input_userPWD !== reTypePWD){
+        setSignupMsg('Check your password')
+      } else{
+        console.log("MATCH")
+      }
+      // axios.post('/main/signup',{input_userEmail,input_userPWD})
+      // .then(res=>{
+      //   console.log(res)
+      // })
+      // .catch((err)=>{
+      //   console.log(err)
+      // })
+    }
     return(
       <div>
         <div className="form-container sign-in-container">
-          <form action="#">
+          <form onSubmit={handleSubmit}>
             <h1 className="LS-title">Sign up</h1>
-            <input type="text" placeholder="Your email" />
-            <input type="password" placeholder="Password" />
-            <input type="password" placeholder="Re-enter Your Password" />
-            <input type="submit" value="Sign Up" className='signupBtn'onClick={()=>{navigate('/connect/personalInfo')}}/>
+            <input
+              onChange={(e)=>setEmail(e.target.value)}
+              value={input_userEmail}
+              name="input-email"
+              type="text"
+              placeholder="Your email" />
+            <input
+              onChange={(e)=>setPWD(e.target.value)}
+              value={input_userPWD}
+              name="input-password"
+              type="password"
+              placeholder="Password" />
+            <input
+              onChange={(e)=>{setRetypePWD(e.target.value)}}
+              value={reTypePWD}
+              type="password"
+              placeholder="Re-enter Your Password" />
+              <span className='signupMsg'>{signupMsg}</span>
+            <input
+              type="submit" 
+              value="Sign Up"
+              className='signupBtn'
+            />
           </form>
         </div>
       </div>
@@ -97,47 +145,54 @@ function App() {
     return(
       <div className="personalInfo">
         <h3>Personal Information</h3>
-        <input type="text" placeholder='Owner First Name' />
-        <input type="text" placeholder='Owner Last Name' />
-        <input type="date" placeholder='Date of Birth' />
-        <div className="cat-dog">
-          <span>I have a:</span>
-          <div>
-            <input type="radio" name="pet-kind" id="Dog"/>
-            <label htmlFor="Dog">Dog</label>
+        <form action="" className='signupForm'>
+          <input name="fname" type="text" placeholder='Owner First Name' />
+          <input name="lname" type="text" placeholder='Owner Last Name' />
+          <input name="bod" type="date" placeholder='Date of Birth' />
+          <textarea name="intro" id="" cols="42" rows="5" placeholder='Brief introduction about you' className='intro'></textarea>
+          <div className="cat-dog">
+            <span>I have a:</span>
+            <div>
+              <input type="radio" name="pet-kind" id="Dog" className='l-radio' checked/>
+              <label htmlFor="Dog">Dog</label>
+            </div>
+            <div>
+              <input type="radio" name="pet-kind" id="Cat" className='l-radio'/>
+              <label htmlFor="Cat">Cat</label>
+            </div>
           </div>
-          <div>
-            <input type="radio" name="pet-kind" id="Cat"/>
-            <label htmlFor="Cat">Cat</label>
-          </div>
-        </div>
-        <label for="file" className='photoUpload'>&#10149; Upload Profile Photo</label>
-        <input type="file" name="owner_photo" accept="image/*" id="file"/>
+          <label for="file" className='photoUpload'>&#10149; Upload Profile Photo</label>
+          <input type="file" name="owner_photo" accept="image/*" id="file"/>
+          
+          {/* PET */}
+          <h3>Pet Information</h3>
+          
+          <input type="text" placeholder='Pet Name' />
+          <select name="pet_gender" id="pet_gender">
+            <option value="gender">Pet's Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <select name="pet_status" id="pet_status">
+            <option value="status">Pet's Neuter/Spay Status</option>
+            <option value="true">Neutered or Spayed</option>
+            <option value="false">Not Neutered or Spayed</option>
+          </select>
+          <select name="interest" id="interest">
+            <option value="status">I'm interested in ..</option>
+            <option value="play-date">Only pet play dates</option>
+            <option value="rescue">Only rescuing an animal</option>
+            <option value="both">Both</option>
+          </select>
+          <label for="file" className='photoUpload'>&#10149; Upload Your Pet Photo</label>
+          <input type="file" name="pet_photo" accept="image/*" id="file"/>
         
-        {/* PET */}
-        <h3>Pet Information</h3>
-        <input type="text" placeholder='Pet Name' />
-        <select name="pet_gender" id="pet_gender">
-          <option value="gender">Pet's Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-        <select name="pet_status" id="pet_status">
-          <option value="status">Pet's Neuter/Spay Status</option>
-          <option value="true">Neutered or Spayed</option>
-          <option value="false">Not Neutered or Spayed</option>
-        </select>
-        <select name="interest" id="interest">
-          <option value="status">I'm interested in ..</option>
-          <option value="play-date">Only pet play dates</option>
-          <option value="rescue">Only rescuing an animal</option>
-          <option value="both">Both</option>
-        </select>
-        <label for="file" className='photoUpload'>&#10149; Upload Your Pet Photo</label>
-        <input type="file" name="pet_photo" accept="image/*" id="file"/>
-      
-      <input onClick={()=>{navigate('/home/welcome')}}type="submit" value="Save Information" />
-
+        <input
+          onClick={()=>{navigate('/home/welcome')}}
+          type="submit"
+          value="Save Information"
+        />
+      </form>
       </div>
     )
   }
@@ -146,35 +201,67 @@ function App() {
     return(
       <div className='homeBody'>
         <header className='home'>
-          <img src={arrow} className="arrowBack" alt="back-arrow" onClick={()=>{navigate(-1)}}style={{transform: 'rotate(90deg)'}}/>
+          <img
+            onClick={()=>{navigate(-1)}}
+            src={arrow}
+            className="arrowBack"
+            alt="back-arrow"
+            style={{transform: 'rotate(90deg)'}}
+          />
           <div>
-            <img src={symbol} className="logoHomeS" alt="petlink logo" onClick={()=>{navigate("/home/welcome")}}/>
-            <img src={wordmark} className="logoHomeT" alt="petlink logo" onClick={()=>{navigate("/home/welcome")}}/>
+            <img
+              onClick={()=>{navigate("/home/welcome")}}
+              src={symbol}
+              className="logoHomeS"
+              alt="petlink logo"
+            />
+            <img
+              onClick={()=>{navigate("/home/welcome")}}
+              src={wordmark}
+              className="logoHomeT"
+              alt="petlink logo"
+            />
           </div>
-          <img src={more} className="more" alt="more" onClick={()=>{navigate("/home/welcome")}} />
+          <img
+            onClick={()=>{navigate("/home/welcome")}} 
+            src={more}
+            className="more"
+            alt="more"
+          />
         </header>
         <Outlet></Outlet>
-
         <nav className='HomeNav'>
           <ul>
             <li>
               <a>
-                <img src={person} onClick={()=>{navigate('/home/profile')}} alt="personal information"/>
+                <img
+                  onClick={()=>{navigate('/home/profile')}}
+                  src={person}
+                  alt="personal information"/>
               </a>
             </li>
             <li>
               <a>
-                <img src={chat} onClick={()=>{navigate('/home/event')}} alt="Communication"/>
+                <img
+                  onClick={()=>{navigate('/home/event')}}
+                  src={chat}
+                  alt="Communication"/>
               </a>
             </li>
             <li>
               <a>
-                <img src={heart} onClick={()=>{navigate('/home/match')}} alt="Matching "/>
+                <img
+                  onClick={()=>{navigate('/home/match')}}
+                  src={heart}
+                  alt="Matching "/>
               </a>
             </li>
             <li>
               <a>
-                <img src={report} onClick={()=>{navigate('/home/info')}} alt="info"/>
+                <img
+                  onClick={()=>{navigate('/home/info')}}
+                  src={report}
+                  alt="info"/>
               </a>
             </li>
           </ul>
@@ -206,7 +293,27 @@ function App() {
   function Match(){
     return (
       <div className='homeComponent match'>
-        <p>Match</p>
+        <div className="carousel_container">
+          {/* user start */}
+          <div className="user_card">
+            <div className="photo_container">
+              <img src="/img/photos/cat_man_2.jpg" alt="user_photo" /> {/* DYNAMIC */}
+            </div>
+            <div className="text_container">
+              <h2>Tristan & Rio, 28 & 2</h2> {/* DYNAMIC */}
+              <p> {/* DYNAMIC */}
+                I work full-time as a barista manager. He lives a very laid
+                back, easy going life with his cat Rio, who he rescued in June of
+                2020.
+              </p>
+              <div className="icon_container">
+                <img src="/img/icons/solid_heart.png" alt="" />
+                <img src="/img/icons/x.png" alt="" />
+              </div>
+            </div>
+          </div>
+          {/* user end */}
+        </div>
       </div>
     )
   }
