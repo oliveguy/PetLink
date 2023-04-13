@@ -220,5 +220,5 @@ function App() {
 }
 
 export default App;
-// Permision Denied Issue(MAC)
+// Permision Denied Issue(MAC) Node module authrized
 // sudo chmod +x node_modules/.bin/react-scripts
