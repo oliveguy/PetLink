@@ -8,43 +8,28 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // SIGNUP Page
-router.get('/',(req,res)=>{
-  res.json({name:"hana"})
-})
-  router.post("/signup",(req,res)=>{
-    console.log(req.body)
-    // async (req, res) => {
-    //   const { userID, userPWD, userName, userEmail, loginInfo} = req.body;
-    //   try {
-    //     // userID compare
-    //     let user = await User.findOne({ userID });
-    //     if (user) {
-    //       return res
-    //         .status(400)
-    //         .json({ errors: [{ msg: "User already exists" }] });
-    //     }
-    //     // assign fields on user
-    //     user = new User({
-    //       userID,
-    //       userPWD,
-    //       userName,
-    //       userEmail,
-    //       loginInfo
-    //     });
-        
-    //     // PWD Encripted
-    //     const salt = await bcrypt.genSalt(10);
-    //     user.userPWD = await bcrypt.hash(userPWD, salt);
-  
-    //     await user.save(); // save user in DB
-  
-    //     res.send("Success");
-    //   } catch (error) {
-    //     console.error(error.message);
-    //     res.status(500).send("Server Error");
-    //   }
-    // }
-  })
+  router.post("/signup", async (req, res) => {
+    const { input_userEmail, input_userPWD} = req.body;
+    try {
+      let user = await User.findOne({ input_userEmail });
+      if (user) {
+        return res
+        .status(400)
+        .json({ errors: [{ msg: "The email already exists" }] });
+      }
+      user = new User({user_email:input_userEmail,user_password:input_userPWD});
+      const salt = await bcrypt.genSalt(10);
+      user.user_password = await bcrypt.hash(user.user_password, salt);
+
+      await user.save();
+      res.json({registration:true});
+
+      } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Server Error");
+      }
+    }
+  )
 
 // LOGIN
   router.get("/signin",(req,res)=>{
