@@ -10,7 +10,7 @@ app.use(express.json());
 // MAIN-ROOT Page
 router.get("/",(req,res)=>{
   // LOGIN CHECK
-  res.render('main.ejs');
+  res.json({kaka:kaee})
 })
   // Profile Tab
   router.get('/profile',(req,res)=>{

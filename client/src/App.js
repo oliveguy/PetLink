@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate, Outlet, Switch } from 'react-router-dom';
+import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
 
 import './css/base.css';
@@ -46,6 +46,16 @@ function App() {
         <img src="img/logo/PetLink-wordmark.svg" alt="PetLink wordmark" />
         <a onClick={()=>{navigate("/connect/login")}} className="splash_btn">Log In</a>
         <a onClick={()=>{navigate('/connect/signup')}} className="splash_btn">Sign Up</a>
+        <a onClick={(e)=>{
+          e.preventDefault();
+          axios.get('/user')
+          .then(resu=>{
+            console.log(resu);
+          })
+          .catch((err)=>{
+            console.log(err)
+          })
+        }} className="splash_btn">dddd</a>
       </div>
     )
   }
@@ -97,16 +107,16 @@ function App() {
         setSignupMsg('Enter your ID or password')
       } else if(input_userPWD !== reTypePWD){
         setSignupMsg('Check your password')
-      } else{
-        console.log("MATCH")
+      } else {
+        // axios.post('/user/signup',{input_userEmail,input_userPWD})
+        // .then(res=>{
+        //   console.log(res)
+        // })
+        // .catch((err)=>{
+        //   console.log(err)
+        // })
+
       }
-      // axios.post('/main/signup',{input_userEmail,input_userPWD})
-      // .then(res=>{
-      //   console.log(res)
-      // })
-      // .catch((err)=>{
-      //   console.log(err)
-      // })
     }
     return(
       <div>

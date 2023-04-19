@@ -5,6 +5,13 @@ const path = require('path');
 const DBURL = process.env.MONGODB;
 const mongoose = require('mongoose');
 const http = require('http').createServer(app);
+var cors = require('cors');
+app.use(cors(
+  {
+    origin:'*',
+    methods:["GET","POST"],
+  }
+));
 
 // MONGO DB Connection
 let db = mongoose.connection;
@@ -27,6 +34,9 @@ app.use(express.static("public"));
 // API
   // ~/USER ROUTING()
   app.use("/user", require("./routes/user.js")); // signup(POST) / login(POST) / register photos(POST)
+  // app.get('/user', (req,res)=>{
+  //   res.json({aa:"aaaa"})
+  // })
   // ~/MAIN ROUTING()
   app.use("/main", require("./routes/main.js")); // view profile(GET)-change PW-photo(UPDATE) / chat history(GET) / user-pet listing(GET)
   // ~CHAT ROUTING()
@@ -39,7 +49,6 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 app.get('/', (req,res)=>{
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 })
-
 
 http.listen(8080,()=>{
   console.log('listening on 8080');
