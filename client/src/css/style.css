@@ -183,7 +183,7 @@ body#userInfo form input[type="date"] {
   width: 60%;
 }
 input[type="file"]{
-  display:none;
+  display: none;
 }
 label.photoUpload{
   color: var(--redbg);
@@ -193,13 +193,19 @@ label.photoUpload{
   padding: .5rem .75rem;
   width:80%;
   text-align: center;
-  margin: 1rem 0;
+  margin: 1rem;
+}
+img.previewPic {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
 }
 div.personalInfo form input[type="submit"] {
   background-color: var(--btn_light_gray);
   color: var(--darkbg);
   width:60%;
   font-weight: bold;
+  margin-top: 1rem;
 }
 .l-radio {
   accent-color: var(--redbg);
@@ -567,6 +573,13 @@ div.personalInfo > form.signupForm > div.cat-dog{
 }
 span.signupMsg{
   color:#fff;
+}
+/* SIGNUP ALERT MESSAGE */
+span.signup-alert{
+  padding: .5rem 1rem;
+  background-color: var(--redbg);
+  color:var(--white);
+  border-radius: 10px;
 }
 header.home{
   display:flex;

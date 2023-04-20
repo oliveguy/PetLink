@@ -85,27 +85,34 @@ function App() {
     )
   }
   function Signup(){
-    const [input_userEmail, setEmail] = useState('');
-    const [input_userPWD, setPWD] = useState('');
+    const [user_email, setEmail] = useState('');
+    const [user_password, setPWD] = useState('');
 
     const [reTypePWD, setRetypePWD] = useState('');
     const [signupMsg, setSignupMsg] = useState('');
+    const [alert, setAlert] = useState('signupMsg');
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
       e.preventDefault();
-      if(input_userPWD === ''|| reTypePWD ===''){
+      if(user_password === ''|| reTypePWD ===''){
         setSignupMsg('Enter your ID or password')
-      } else if(input_userPWD !== reTypePWD){
+        setAlert('signupMsg signup-alert')
+      } else if(user_password !== reTypePWD){
         setSignupMsg('Check your password')
+        setAlert('signupMsg signup-alert')
       } else {
-        axios.post('/user/signup',{input_userEmail,input_userPWD})
+        axios.post('/user/signup',{user_email,user_password})
         .then(res=>{
-          console.log(res)
+          if(res.status == 200){
+            navigate('/connect/personalInfo')
+          }
         })
         .catch((err)=>{
-          console.log(err)
+          if(err.response.status == 400){
+            setSignupMsg('The email you typed in already existed!')
+            setAlert('signupMsg signup-alert')
+          }
         })
-
       }
     }
     return(
@@ -115,13 +122,13 @@ function App() {
             <h1 className="LS-title">Sign up</h1>
             <input
               onChange={(e)=>setEmail(e.target.value)}
-              value={input_userEmail}
+              value={user_email}
               name="input-email"
               type="text"
               placeholder="Your email" />
             <input
               onChange={(e)=>setPWD(e.target.value)}
-              value={input_userPWD}
+              value={user_password}
               name="input-password"
               type="password"
               placeholder="Password" />
@@ -130,7 +137,7 @@ function App() {
               value={reTypePWD}
               type="password"
               placeholder="Re-enter Your Password" />
-              <span className='signupMsg'>{signupMsg}</span>
+              <span className={alert}>{signupMsg}</span>
             <input
               type="submit" 
               value="Sign Up"
@@ -142,57 +149,76 @@ function App() {
     )
   }
   function PersonalInfo(){
+    const [files, setFiles] = useState([null, null]);
+    const [previewUrls, setPreviewUrls] = useState([null, null]);
+    
+    const handleFileChange = (e, index) => {
+      const selectedFile = e.target.files[0];
+      let newFiles = [...files];
+      newFiles[index] = selectedFile;
+      setFiles(newFiles);
+      if (selectedFile) {
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+          let newPreviewUrls = [...previewUrls];
+          newPreviewUrls[index] = fileReader.result;
+          setPreviewUrls(newPreviewUrls);
+        };
+        fileReader.readAsDataURL(selectedFile);
+      }
+    }
+
     return(
       <div className="personalInfo">
         <h3>Personal Information</h3>
         <form action="" className='signupForm'>
-          <input name="fname" type="text" placeholder='Owner First Name' />
-          <input name="lname" type="text" placeholder='Owner Last Name' />
-          <input name="bod" type="date" placeholder='Date of Birth' />
-          <textarea name="intro" id="" cols="42" rows="5" placeholder='Brief introduction about you' className='intro'></textarea>
-          <div className="cat-dog">
-            <span>I have a:</span>
-            <div>
-              <input type="radio" name="pet-kind" id="Dog" className='l-radio' checked/>
-              <label htmlFor="Dog">Dog</label>
+            <input name="fname" type="text" placeholder='Owner First Name' />
+            <input name="lname" type="text" placeholder='Owner Last Name' />
+            <input name="bod" type="date" placeholder='Date of Birth' />
+            <textarea name="userBrief" id="" cols="42" rows="5" placeholder='Brief introduction about you' className='intro'></textarea>
+            <div className="cat-dog">
+              <span>I have a:</span>
+              <div>
+                <input type="radio" name="pet-kind" id="Dog" className='l-radio' />
+                <label htmlFor="Dog">Dog</label>
+              </div>
+              <div>
+                <input type="radio" name="pet-kind" id="Cat" className='l-radio'/>
+                <label htmlFor="Cat">Cat</label>
+              </div>
             </div>
-            <div>
-              <input type="radio" name="pet-kind" id="Cat" className='l-radio'/>
-              <label htmlFor="Cat">Cat</label>
-            </div>
-          </div>
-          <label for="file" className='photoUpload'>&#10149; Upload Profile Photo</label>
-          <input type="file" name="owner_photo" accept="image/*" id="file"/>
-          
-          {/* PET */}
-          <h3>Pet Information</h3>
-          
-          <input type="text" placeholder='Pet Name' />
-          <select name="pet_gender" id="pet_gender">
-            <option value="gender">Pet's Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-          <select name="pet_status" id="pet_status">
-            <option value="status">Pet's Neuter/Spay Status</option>
-            <option value="true">Neutered or Spayed</option>
-            <option value="false">Not Neutered or Spayed</option>
-          </select>
-          <select name="interest" id="interest">
-            <option value="status">I'm interested in ..</option>
-            <option value="play-date">Only pet play dates</option>
-            <option value="rescue">Only rescuing an animal</option>
-            <option value="both">Both</option>
-          </select>
-          <label for="file" className='photoUpload'>&#10149; Upload Your Pet Photo</label>
-          <input type="file" name="pet_photo" accept="image/*" id="file"/>
-        
-        <input
-          onClick={()=>{navigate('/home/welcome')}}
-          type="submit"
-          value="Save Information"
-        />
-      </form>
+            <label htmlFor="file" className='photoUpload'>&#10149; Upload Your Profile Photo</label>
+            <input type="file" name="owner_photo" accept="image/*" id="file" onChange={e=>{handleFileChange(e,0)}} />
+            {previewUrls[0] && <img src={previewUrls[0]} className='previewPic' alt="user photo"/>}
+
+            <h3>Pet Information</h3>
+            <input type="text" placeholder='Pet Name' />
+            <select name="pet_gender" id="pet_gender">
+              <option value="gender">Pet's Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            <select name="pet_status" id="pet_status">
+              <option value="status">Pet's Neuter/Spay Status</option>
+              <option value="true">Neutered or Spayed</option>
+              <option value="false">Not Neutered or Spayed</option>
+            </select>
+            <select name="interest" id="interest">
+              <option value="status">I'm interested in ..</option>
+              <option value="play-date">Only pet play dates</option>
+              <option value="rescue">Only rescuing an animal</option>
+              <option value="both">Both</option>
+            </select>
+            <label htmlFor="file2" className='photoUpload'>&#10149; Upload Your Pet Photo</label>
+            <input type="file" name="pet_photo" accept="image/*" id="file2" onChange={e=>{handleFileChange(e,1)}}/>
+            {previewUrls[1] && <img src={previewUrls[1]} className='previewPic' alt="pet photo"/>}
+
+          <input
+            onClick={()=>{navigate('/home/welcome')}}
+            type="submit"
+            value="Save Information"
+          />
+        </form>
       </div>
     )
   }
