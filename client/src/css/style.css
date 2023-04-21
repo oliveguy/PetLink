@@ -638,3 +638,17 @@ div.homeComponent{
 div.match{
   padding: 1.5rem;
 }
+div.invalidAccess{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+}
+div.invalidAccess > a{
+  padding:.5rem 1rem;
+  width:40%;
+  border-radius: 10px;
+  background-color: var(--redbg);
+}

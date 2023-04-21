@@ -5,13 +5,27 @@ const path = require('path');
 const DBURL = process.env.MONGODB;
 const mongoose = require('mongoose');
 const http = require('http').createServer(app);
+const session = require('express-session');
 var cors = require('cors');
 app.use(cors(
   {
     origin:'*',
     methods:["GET","POST"],
+    credentials:true,
   }
 ));
+// SESSION Setting
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  proxy:true,
+  cookie : {
+    httpOnly : true,
+    sameSite : 'none',
+    maxAge : 5300000
+}
+}));
 
 // MONGO DB Connection
 let db = mongoose.connection;
@@ -34,9 +48,6 @@ app.use(express.static("public"));
 // API
   // ~/USER ROUTING()
   app.use("/user", require("./routes/user.js")); // signup(POST) / login(POST) / register photos(POST)
-  // app.get('/user', (req,res)=>{
-  //   res.json({aa:"aaaa"})
-  // })
   // ~/MAIN ROUTING()
   app.use("/main", require("./routes/main.js")); // view profile(GET)-change PW-photo(UPDATE) / chat history(GET) / user-pet listing(GET)
   // ~CHAT ROUTING()
@@ -53,24 +64,6 @@ app.get('/', (req,res)=>{
 http.listen(8080,()=>{
   console.log('listening on 8080');
 })
-
-// let userInfo ={
-//   owner:{
-//     fName:'',
-//     lname:'',
-//     dob:'0000-00-00',
-//     location:''
-//   },
-//   pet:{
-//     kind:'',
-//     name:'',
-//     gender:'',
-//     pstatus:'',
-//     interest:''
-//   }
-// }
-
-// check up
 
 // Shift + Alt + F -> Formatter
 
@@ -89,12 +82,5 @@ http.listen(8080,()=>{
 // https://poiemaweb.com/nodejs-socketio
 // +React
 // https://youngbean96.tistory.com/2
-
 // Mock-up
 // https://www.figma.com/file/qfnSgksEjkeVekaadToNa2/capstone?node-id=0-1&t=poE1KzKLltF5L0eq-0
-
-// TO do
-// Back-end
-// - Signup / Login
-// Chatting
-// Front-end
