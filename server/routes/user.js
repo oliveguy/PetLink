@@ -97,7 +97,6 @@ router.post(
       let inputPWD = req.body.loginPWD;
       
       const user = await User.findOne({user_email:inputID});
-      console.log(user);
     
     if(!user){
       return res.status(401).json({msg:'noID'});

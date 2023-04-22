@@ -3,19 +3,24 @@ import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
 
+// CSS
 import './css/base.css';
 import './css/index_style.css';
 import './css/pages.css';
 import './css/style.css';
 
-import chat from './src-img/chat.png';
-import arrow from './src-img/down_arrow_.png';
-import heart from './src-img/heart.png';
-import more from './src-img/moreHome.png';
-import report from './src-img/report.png';
-import person from './src-img/person.png';
-import symbol from './src-img/PetLink-symbol.svg';
-import wordmark from './src-img/PetLink-wordmark-red.svg';
+// PAGES
+import Index from "./pages/Index.js";
+import LoginSignup from "./pages/LoginSignup.js";
+  import Login from "./pages/Login.js";
+  import Signup from "./pages/Signup.js";
+// import PersonalInfo from "./pages/PersonalInfo.js";
+import Home from "./pages/Home.js";
+  import Welcome from "./pages/Welcome.js";
+  import Profile from "./pages/Profile.js";
+  import Event from "./pages/Event.js";
+  import Match from "./pages/Match.js";
+  import Info from "./pages/Info.js";
 
 function App() {
   let navigate = useNavigate();
@@ -39,150 +44,6 @@ function App() {
     </div>
   );
 
-  function Index(){
-    return(
-      <div id="splash_main">
-        <img src="img/logo/PetLink-symbol.svg" alt="PetLink-symbol" />
-        <img src="img/logo/PetLink-wordmark.svg" alt="PetLink wordmark" />
-        <a onClick={()=>{navigate("/connect/login")}} className="splash_btn">Log In</a>
-        <a onClick={()=>{navigate('/connect/signup')}} className="splash_btn">Sign Up</a>
-      </div>
-    )
-  }
-  function LoginSignup(){
-    return (
-      <div id="signUp">
-        <header>
-          <img
-            src="/img/logo/PetLink-logo.svg"
-            className="signupLogo"
-            alt="petlink logo"
-            onClick={()=>{navigate("/")}}
-          />
-        </header>
-        <Outlet></Outlet>
-        <footer>
-          <img src="/img/logo/PetLink-wordmark.svg" alt="PetLink-wordmark" />
-          <p>Terms and Conditions apply.</p>
-        </footer>
-      </div>
-    )
-  }
-  function Login(){
-    const [loginID, setLoginID] = useState('');
-    const [loginPWD, setLoginPWD] = useState('');
-    const [loginMsg, setloginMsg] = useState('');
-    const [alert, setAlert] = useState('signupMsg');
-    const handleLogin = (e) =>{
-      e.preventDefault();
-      if(loginID === ''){
-        setloginMsg('Type your email')
-        setAlert('signupMsg signup-alert')
-      } else if(loginPWD === ''){
-        setloginMsg('Type your password')
-        setAlert('signupMsg signup-alert')
-      } else {
-        axios.post('/user/login',{loginID,loginPWD})
-        .then(res=>{
-          if(res.status === 200){
-            sessionStorage.setItem('user_email', res.data.data);
-            sessionStorage.setItem('firstUser', false);
-            navigate("/home/welcome");
-          }
-        })
-        .catch((err)=>{
-          if(err.response.data.msg = "noID"){
-            setloginMsg('Incorrect email')
-            setAlert('signupMsg signup-alert')
-          } else if (err.response.data.msg = "nopassword"){
-            setloginMsg('Incorrect password')
-            setAlert('signupMsg signup-alert')
-          }
-        })
-      }
-    }
-    return(
-      <div>
-        <div className="form-container sign-in-container">
-          <form onSubmit={handleLogin}>
-            <h1 className="LS-title">Log In</h1>
-            <span className={alert}>{loginMsg}</span>
-            <input onChange={(e)=>{setLoginID(e.target.value)}} value={loginID} type="text" placeholder="Your email" />
-            <input onChange={(e)=>{setLoginPWD(e.target.value)}} value={loginPWD} type="password" placeholder="Password" />
-            <a href="#">Forgot password?</a>
-            <input type="submit" value="Log In" />
-          </form>
-            <a onClick={()=>{navigate('/connect/signup')}}>Don't you have ID?</a>
-        </div>
-      </div>
-    )
-  }
-
-  function Signup(){
-    const [user_email, setEmail] = useState('');
-    const [user_password, setPWD] = useState('');
-
-    const [reTypePWD, setRetypePWD] = useState('');
-    const [signupMsg, setSignupMsg] = useState('');
-    const [alert, setAlert] = useState('signupMsg');
-
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if(user_password === ''|| reTypePWD ===''){
-        setSignupMsg('Enter your ID or password')
-        setAlert('signupMsg signup-alert')
-      } else if(user_password !== reTypePWD){
-        setSignupMsg('Check your password')
-        setAlert('signupMsg signup-alert')
-      } else {
-        axios.post('/user/signup',{user_email,user_password})
-        .then(res=>{
-          if(res.status == 200){
-            sessionStorage.setItem('user_email', res.data.userID)
-            navigate('/connect/personalInfo')
-          }
-        })
-        .catch((err)=>{
-          if(err.response.status == 400){
-            setSignupMsg('The email you typed in already existed!')
-            setAlert('signupMsg signup-alert')
-          }
-        })
-      }
-    }
-    return(
-      <div>
-        <div className="form-container sign-in-container">
-          <form onSubmit={handleSubmit}>
-            <h1 className="LS-title">Sign up</h1>
-            <input
-              onChange={(e)=>setEmail(e.target.value)}
-              value={user_email}
-              name="input-email"
-              type="text"
-              placeholder="Your email" />
-            <input
-              onChange={(e)=>setPWD(e.target.value)}
-              value={user_password}
-              name="input-password"
-              type="password"
-              placeholder="Password" />
-            <input
-              onChange={(e)=>{setRetypePWD(e.target.value)}}
-              value={reTypePWD}
-              type="password"
-              placeholder="Re-enter Your Password" />
-              <span className={alert}>{signupMsg}</span>
-            <input
-              type="submit" 
-              value="Sign Up"
-              className='signupBtn'
-            />
-          </form>
-        </div>
-      </div>
-    )
-  }
   function PersonalInfo(){
     const [files, setFiles] = useState([null, null]);
     const [previewUrls, setPreviewUrls] = useState([null, null]);
@@ -327,139 +188,6 @@ function App() {
     )
   }
 
-  function Home(){
-    return(
-      sessionStorage.user_email ?
-        <div className='homeBody'>
-          <header className='home'>
-            <img
-              onClick={()=>{navigate(-1)}}
-              src={arrow}
-              className="arrowBack"
-              alt="back-arrow"
-              style={{transform: 'rotate(90deg)'}}
-            />
-            <div>
-              <img
-                onClick={()=>{navigate("/home/welcome")}}
-                src={symbol}
-                className="logoHomeS"
-                alt="petlink logo"
-              />
-              <img
-                onClick={()=>{navigate("/home/welcome")}}
-                src={wordmark}
-                className="logoHomeT"
-                alt="petlink logo"
-              />
-            </div>
-            <img
-              onClick={()=>{navigate("/home/welcome")}} 
-              src={more}
-              className="more"
-              alt="more"
-            />
-          </header>
-          <Outlet></Outlet>
-          <nav className='HomeNav'>
-            <ul>
-              <li>
-                <a>
-                  <img
-                    onClick={()=>{navigate('/home/profile')}}
-                    src={person}
-                    alt="personal information"/>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <img
-                    onClick={()=>{navigate('/home/event')}}
-                    src={chat}
-                    alt="Communication"/>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <img
-                    onClick={()=>{navigate('/home/match')}}
-                    src={heart}
-                    alt="Matching "/>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <img
-                    onClick={()=>{navigate('/home/info')}}
-                    src={report}
-                    alt="info"/>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      :<div className='invalidAccess'>
-        <img src="/img/logo/PetLink-symbol.svg" alt="PetLink-symbol" />
-        <p>You need to login to view this page!</p>
-        <a href="/">Go to Home</a>
-      </div>
-    )
-  }
-  function Welcome(){
-    return(
-      <div className='homeComponent welcome'>
-        <p>WELCOME</p>
-      </div>
-    )
-  }
-  function Profile(){
-    return (
-      <div className='homeComponent profile'>
-        <p>Profile</p>
-      </div>
-    )
-  }
-  function Event(){
-    return (
-      <div className='homeComponent event'>
-        <p>Event</p>
-      </div>
-    )
-  }
-  function Match(){
-    return (
-      <div className='homeComponent match'>
-        <div className="carousel_container">
-          {/* user start */}
-          <div className="user_card">
-            <div className="photo_container">
-              <img src="/img/photos/cat_man_2.jpg" alt="user_photo" /> {/* DYNAMIC */}
-            </div>
-            <div className="text_container">
-              <h2>Tristan & Rio, 28 & 2</h2> {/* DYNAMIC */}
-              <p> {/* DYNAMIC */}
-                I work full-time as a barista manager. He lives a very laid
-                back, easy going life with his cat Rio, who he rescued in June of
-                2020.
-              </p>
-              <div className="icon_container">
-                <img src="/img/icons/solid_heart.png" alt="" />
-                <img src="/img/icons/x.png" alt="" />
-              </div>
-            </div>
-          </div>
-          {/* user end */}
-        </div>
-      </div>
-    )
-  }
-  function Info(){
-    return (
-      <div className='homeComponent info'>
-        <p>Info</p>
-      </div>
-    )
-  }
 }
 
 export default App;
