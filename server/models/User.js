@@ -42,6 +42,9 @@ const userSchema = new Schema(
     },
     pet_interest:{
       type: String
+    },
+    pet_photo:{
+      type: String
     }
   })
 

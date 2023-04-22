@@ -30,6 +30,7 @@ function Signup(){
       .then(res=>{
         if(res.status == 200){
           sessionStorage.setItem('user_email', res.data.userID)
+          sessionStorage.setItem('firstUser', true)
           navigate('/connect/personalInfo')
         }
       })

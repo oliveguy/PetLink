@@ -9,12 +9,13 @@ app.use(express.json());
 
 // MAIN-ROOT Page
 router.get("/",(req,res)=>{
-  // LOGIN CHECK
-  res.json({kaka:kaee})
+
 })
   // Profile Tab
-  router.get('/profile',(req,res)=>{
-    res.render('profile.ejs');
+  router.post('/profile',
+  async(req,res)=>{
+    const user = await User.findOne({user_email:req.body.reqEmail});
+    res.status(200).json(user)
   })
   // Communication Tab
   router.get('/communication',(req,res)=>{

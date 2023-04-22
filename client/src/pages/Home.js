@@ -18,13 +18,14 @@ import symbol from '../src-img/PetLink-symbol.svg';
 import wordmark from '../src-img/PetLink-wordmark-red.svg';
 
 function Home(){
+  const[menuSelect, setMenuSelect] = useState('.')
   let navigate = useNavigate();
   return(
     sessionStorage.user_email ?
       <div className='homeBody'>
         <header className='home'>
           <img
-            onClick={()=>{navigate(-1)}}
+            onClick={(e)=>{navigate(-1)}}
             src={arrow}
             className="arrowBack"
             alt="back-arrow"
@@ -57,33 +58,57 @@ function Home(){
             <li>
               <a>
                 <img
-                  onClick={()=>{navigate('/home/profile')}}
+                  onClick={()=>{
+                    setMenuSelect('');
+                    setMenuSelect(0);
+                    navigate('/home/profile');
+                  }}
                   src={person}
-                  alt="personal information"/>
+                  alt="personal information"
+                  class={menuSelect == 0 ? "menuSelect": ""}
+                  />
               </a>
             </li>
             <li>
               <a>
                 <img
-                  onClick={()=>{navigate('/home/event')}}
+                  onClick={()=>{
+                    setMenuSelect('');
+                    setMenuSelect(1);
+                    navigate('/home/event')
+                  }}
                   src={chat}
-                  alt="Communication"/>
+                  alt="Communication"
+                  class={menuSelect == 1 ? "menuSelect": ""}
+                  />
               </a>
             </li>
             <li>
               <a>
                 <img
-                  onClick={()=>{navigate('/home/match')}}
+                  onClick={()=>{
+                    setMenuSelect('');
+                    setMenuSelect(2);
+                    navigate('/home/match');
+                  }}
                   src={heart}
-                  alt="Matching "/>
+                  alt="Matching"
+                  class={menuSelect == 2 ? "menuSelect": ""}
+                  />
               </a>
             </li>
             <li>
               <a>
                 <img
-                  onClick={()=>{navigate('/home/info')}}
+                  onClick={()=>{
+                    setMenuSelect('');
+                    setMenuSelect(3);
+                    navigate('/home/info')
+                  }}
                   src={report}
-                  alt="info"/>
+                  alt="info"
+                  class={menuSelect == 3 ? "menuSelect": ""}
+                  />
               </a>
             </li>
           </ul>

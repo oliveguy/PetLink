@@ -126,7 +126,6 @@ function App() {
     axios.post('/user/signup/personal', formData, { withCredentials: true })
     .then(res=>{
       if(res.status == 200){
-        sessionStorage.setItem('firstUser', true)
         navigate("/home/welcome")
       }
     })

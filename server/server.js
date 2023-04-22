@@ -43,7 +43,7 @@ mongoose.connect(DBURL, {
 app.use(express.urlencoded({ extended: true })); // req.body 전송 시 필수 !!
 app.use(express.json()); // req.body 전송 시 필수 !!
 
-app.use(express.static("public"));
+app.use('/public', express.static("public"));
 
 // API
   // ~/USER ROUTING()

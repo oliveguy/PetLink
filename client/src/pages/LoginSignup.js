@@ -11,7 +11,7 @@ function LoginSignup(){
           className="signupLogo"
           alt="petlink logo"
           onClick={()=>{navigate("/")}}
-        />
+          />
       </header>
       <Outlet></Outlet>
       <footer>
