@@ -20,6 +20,7 @@ import Home from "./pages/Home.js";
   import Profile from "./pages/Profile.js";
   import Event from "./pages/Event.js";
   import Match from "./pages/Match.js";
+  import Matched from "./pages/Matched.js";
   import Info from "./pages/Info.js";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="profile" element={<Profile/>}/>
           <Route path="event" element={<Event/>}/>
           <Route path="match" element={<Match/>}/>
+          <Route path="matched" element={<Matched/>}/>
           <Route path="info" element={<Info/>}/>
         </Route>
       </Routes>
@@ -192,3 +194,4 @@ function App() {
 export default App;
 // Permision Denied Issue(MAC) Node module authrized
 // sudo chmod +x node_modules/.bin/react-scripts
+// Absolute Path Setting -> process.env.PUBLIC_URL

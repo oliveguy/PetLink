@@ -12,7 +12,27 @@ import '../css/style.css';
 function Event(){
   return (
     <div className='homeComponent event'>
-      <p>Event</p>
+      <h3>Recent Activity</h3>
+      <div className='recentActivity eventArea'>
+      <ul className='eventList'>
+        <li className='eventItems'>
+          <img src="/img/icons/solid_heart.png" alt="" />
+          <span>Jiayu & Tori matched with you </span>
+        </li>
+        <li className='eventItems'>
+          <img src="/img/icons/solid_heart.png" alt="" />
+          <span>Collin & Henry matched with you </span>
+        </li>
+        <li className='eventItems'>
+          <img src="/img/icons/solid_heart.png" alt="" />
+          <span>Yumi & Jacky matched with you </span>
+        </li>
+        </ul>
+      </div>
+      <h3>Chat History</h3>
+      <div className='chatFistory eventArea'>
+
+      </div>
     </div>
   )
 }

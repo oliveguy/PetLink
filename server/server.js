@@ -43,8 +43,8 @@ mongoose.connect(DBURL, {
 app.use(express.urlencoded({ extended: true })); // req.body 전송 시 필수 !!
 app.use(express.json()); // req.body 전송 시 필수 !!
 
-app.use('/public', express.static("public"));
-
+// app.use('/public', express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 // API
   // ~/USER ROUTING()
   app.use("/user", require("./routes/user.js")); // signup(POST) / login(POST) / register photos(POST)
@@ -56,9 +56,11 @@ app.use('/public', express.static("public"));
 
 // First Landing page to React App
 // app.js & React routing
-app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use(express.static(path.join(__dirname, '../client/build'))); DEV
+app.use(express.static(path.join(__dirname, './build'))); // DEPLOY
 app.get('/', (req,res)=>{
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  // res.sendFile(path.join(__dirname, '../client/build/index.html')); DEV
+  res.sendFile(path.join(__dirname, './build/index.html')); //DEPLOY
 })
 
 http.listen(8080,()=>{

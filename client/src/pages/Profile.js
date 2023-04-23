@@ -21,22 +21,24 @@ function Profile(){
   const [pet_pstatus, setpet_pstatus] = useState('')
   const [pet_interest, setpet_interest] = useState('')
   const [pet_photo, setpet_photo] = useState('')
+  const [URL ,setURL] = useState('')
 
   let userID = sessionStorage.user_email;
   useEffect(() => {
     axios.post(`/main/profile`,{reqEmail:userID})
       .then((res) => {
-        setuser_fName(res.data.user_fName)
-        setuser_lname(res.data.user_lname)
-        setuser_dob(res.data.user_dob)
-        setuser_brief(res.data.user_brief)
-        setuser_photo(res.data.user_photo)
-        setpet_kind(res.data.pet_kind)
-        setpet_name(res.data.pet_name)
-        setpet_gender(res.data.pet_gender)
-        setpet_pstatus(res.data.pet_pstatus)
-        setpet_interest(res.data.pet_interest)
-        setpet_photo(res.data.pet_photo)
+        setuser_fName(res.data.user.user_fName)
+        setuser_lname(res.data.user.user_lname)
+        setuser_dob(res.data.user.user_dob)
+        setuser_brief(res.data.user.user_brief)
+        setuser_photo(res.data.user.user_photo)
+        setpet_kind(res.data.user.pet_kind)
+        setpet_name(res.data.user.pet_name)
+        setpet_gender(res.data.user.pet_gender)
+        setpet_pstatus(res.data.user.pet_pstatus)
+        setpet_interest(res.data.user.pet_interest)
+        setpet_photo(res.data.user.pet_photo)
+        setURL(res.data.serverURL)
       })
       .catch((err) => {
         console.log(err)
@@ -44,6 +46,7 @@ function Profile(){
     }, []);
     
   const[expand,setExpand]=useState('sub')
+
   return (
     <div className='homeComponent profile'>
       <h3>My Profile</h3>
@@ -52,14 +55,14 @@ function Profile(){
           <span className='userName'>{user_fName}</span>
           <div className="user_pic" id="profile_user">
             <img
-              src={`http://localhost:8080/public/upload/${user_photo}`}
+              src={`${URL}/${user_photo}`}
               alt={user_fName}
             />
           </div>
           <span className='petName'>{pet_name}</span>
           <div className="user_pic" id="profile_pet">
             <img
-              src={`http://localhost:8080/public/upload/${pet_photo}`}
+              src={`${URL}/${pet_photo}`}
               alt={pet_name}
             />
           </div>

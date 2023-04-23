@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
+    // USER
     user_fName:{
       type: String
     },
@@ -31,6 +32,10 @@ const userSchema = new Schema(
     pet_kind:{
       type: String
     },
+    match:{
+      type:Array
+    },
+    // PET
     pet_name:{
       type: String
     },

@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.233d382b.css",
+    "main.js": "/static/js/main.928ad60a.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/PetLink-wordmark-red.svg": "/static/media/PetLink-wordmark-red.ba7db673cd5c90aa7b5b3947fa2aeca3.svg",
+    "static/media/PetLink-symbol.svg": "/static/media/PetLink-symbol.968d141a5c3f6f0f1faae63f8c366bf7.svg",
+    "index.html": "/index.html",
+    "main.233d382b.css.map": "/static/css/main.233d382b.css.map",
+    "main.928ad60a.js.map": "/static/js/main.928ad60a.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.233d382b.css",
+    "static/js/main.928ad60a.js"
+  ]
+}

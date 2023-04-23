@@ -9,11 +9,15 @@ import '../css/pages.css';
 import '../css/style.css';
 
 import chat from '../src-img/chat.png';
+import chat_red from '../src-img/chat-red.png';
 import arrow from '../src-img/down_arrow_.png';
 import heart from '../src-img/heart.png';
+import heart_red from '../src-img/heart-red.png';
 import more from '../src-img/moreHome.png';
 import report from '../src-img/report.png';
+import report_red from '../src-img/report-red.png';
 import person from '../src-img/person.png';
+import person_red from '../src-img/person-red.png';
 import symbol from '../src-img/PetLink-symbol.svg';
 import wordmark from '../src-img/PetLink-wordmark-red.svg';
 
@@ -63,9 +67,9 @@ function Home(){
                     setMenuSelect(0);
                     navigate('/home/profile');
                   }}
-                  src={person}
+                  src={menuSelect == 0 ? person_red: person}
                   alt="personal information"
-                  class={menuSelect == 0 ? "menuSelect": ""}
+                  className={menuSelect == 0 ? "menuSelect": ""}
                   />
               </a>
             </li>
@@ -77,9 +81,9 @@ function Home(){
                     setMenuSelect(1);
                     navigate('/home/event')
                   }}
-                  src={chat}
+                  src={menuSelect == 1 ? chat_red: chat}
                   alt="Communication"
-                  class={menuSelect == 1 ? "menuSelect": ""}
+                  className={menuSelect == 1 ? "menuSelect": ""}
                   />
               </a>
             </li>
@@ -91,9 +95,9 @@ function Home(){
                     setMenuSelect(2);
                     navigate('/home/match');
                   }}
-                  src={heart}
+                  src={menuSelect == 2 ? heart_red: heart}
                   alt="Matching"
-                  class={menuSelect == 2 ? "menuSelect": ""}
+                  className={menuSelect == 2 ? "menuSelect": ""}
                   />
               </a>
             </li>
@@ -105,9 +109,9 @@ function Home(){
                     setMenuSelect(3);
                     navigate('/home/info')
                   }}
-                  src={report}
+                  src={menuSelect == 3 ? report_red: report}
                   alt="info"
-                  class={menuSelect == 3 ? "menuSelect": ""}
+                  className={menuSelect == 3 ? "menuSelect": ""}
                   />
               </a>
             </li>
