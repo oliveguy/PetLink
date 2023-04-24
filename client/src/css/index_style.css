@@ -7,15 +7,14 @@
     height:100vh;
 }
 #splash_main > img:first-of-type{
-    width:50vw;
-    
+    width:30vw;
 }
 #splash_main > img:nth-child(2){
     width:30vw;
 }
 #splash_main > a{
     border-radius: 5px;
-    width: 50%;
+    width: 60%;
     padding: 0.75rem 0rem;
     text-align: center;
     font-size: 0.75rem;
@@ -28,6 +27,6 @@
 
 }
 #splash_main  a:nth-of-type(2){
-
-background-color: var(--darkbg);
+    margin-top:0;
+    background-color: var(--darkbg);
 }

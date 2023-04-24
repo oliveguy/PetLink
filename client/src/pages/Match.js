@@ -50,7 +50,12 @@ function Match(){
   //     console.error("GET Error:"+error);
   //   });
   // },[])
-  const handleMatched = (match) => {
+  const handleMatched = (
+    toEmail,
+    toPerson,
+    toImage,
+    toPetName,
+    toPetImage) => {
     axios.post('/main/matching',{
       from:{
         fromPerson:userID,
@@ -60,7 +65,11 @@ function Match(){
         petPhoto:petPhoto
       },
       to:{
-        toPerson:match
+        email:toEmail,
+        userName:toPerson,
+        userPhoto:toImage,
+        pet:toPetName,
+        petPhoto:toPetImage
       }
     })
     .then((res)=>{
@@ -70,7 +79,7 @@ function Match(){
     })
     .catch((err)=>{
       console.log(err)
-      navigate('/home/match');
+      // navigate('/home/match');
     })
   }
 
@@ -95,7 +104,14 @@ function Match(){
                   <img
                     onClick={()=>{
                       setHeart(index);
-                      handleMatched(usersList[index].email)
+                      let TouserName = usersList[index].fname +' '+usersList[index].lname;
+                      handleMatched(
+                        usersList[index].email, //email
+                        TouserName, //name
+                        usersList[index].photo, // userphoto
+                        usersList[index].pet_name, // petname
+                        usersList[index].pet_photo // petphoto
+                      )
                     }}
                     src="/img/icons/solid_heart.png"
                     className={heart == index?"red-heart":"heart"}

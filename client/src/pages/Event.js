@@ -10,23 +10,43 @@ import '../css/style.css';
 
 
 function Event(){
+  const [URL ,setURL] = useState('')
+  const [allMatch ,setAllMatch] = useState([])
+
+  let userID = sessionStorage.user_email;
+  useEffect(() => {
+    axios.post(`/main/profile`,{reqEmail:userID})
+      .then((res) => {
+        setURL(res.data.serverURL)
+        axios.get(
+          `/main/matched`,
+          {params:{
+            reqEmail: userID
+          }})
+        .then(res => {
+          setAllMatch(res.data.allMine)
+        })
+        .catch(error => {
+          console.error("GET Error:"+error);
+        });
+      })
+      .catch((err) => {
+        console.log("POST Error: "+err)
+      });
+    }, []);
   return (
     <div className='homeComponent event'>
       <h3>Recent Activity</h3>
       <div className='recentActivity eventArea'>
       <ul className='eventList'>
-        <li className='eventItems'>
-          <img src="/img/icons/solid_heart.png" alt="" />
-          <span>Jiayu & Tori matched with you </span>
-        </li>
-        <li className='eventItems'>
-          <img src="/img/icons/solid_heart.png" alt="" />
-          <span>Collin & Henry matched with you </span>
-        </li>
-        <li className='eventItems'>
-          <img src="/img/icons/solid_heart.png" alt="" />
-          <span>Yumi & Jacky matched with you </span>
-        </li>
+        {allMatch.map((each, i)=>{
+          return(
+            <li className='eventItems' key={i}>
+              <img src={`${URL}/${allMatch[i].userPhoto}`} alt={allMatch[i].userName} />
+              <span>{allMatch[i].userName+` & `+allMatch[i].pet} matched ! </span>
+            </li>
+            )
+          })}
         </ul>
       </div>
       <h3>Chat History</h3>

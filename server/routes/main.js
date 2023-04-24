@@ -25,22 +25,40 @@ router.get("/",(req,res)=>{
     '/matching',
     async(req,res)=>{
       try{
+        // TO USER
         const user = await User.findOne(
-          {user_email:req.body.to.toPerson}
+          {user_email:req.body.to.email}
         );
-        user.match.push({
-          userName:req.body.from.fromPersonName,
-          userPhoto:req.body.from.fromPersonPhoto,
-          pet:req.body.from.petName,
-          petPhoto:req.body.from.petPhoto
-        })
+        user.match.from.push(
+            {
+              userName:req.body.from.fromPersonName,
+              userPhoto:req.body.from.fromPersonPhoto,
+              pet:req.body.from.petName,
+              petPhoto:req.body.from.petPhoto
+            }
+          )
         await user.save();
+        // FROM USER
+        const fromuser = await User.findOne(
+          {user_email:req.body.from.fromPerson}
+        );
+        
+        fromuser.match.mine.push(
+          {
+            userName:req.body.to.userName,
+            userPhoto:req.body.to.userPhoto,
+            pet:req.body.to.pet,
+            petPhoto:req.body.to.petPhoto
+          })
+        await fromuser.save();
+
         res.json({add:true})
       }
       catch(err){
         console.log(err)
         res.json({add:false})
       }
+
   })
   
   router.get('/all',async(req,res)=>{
@@ -63,7 +81,15 @@ router.get("/",(req,res)=>{
   router.get('/matched',
   async (req,res)=>{
     const user = await User.findOne({user_email:req.query.reqEmail})
-    console.log(user.match.slice(-1)[0])
+    
+    let allmatched = user.match.mine;
+    let fourMatched = allmatched.slice(Math.max(allmatched.length-4,0))
+    let userinfo = {
+      allMine: fourMatched,
+      mine: user.match.mine.slice(-1)[0],
+      from: user.match.from.slice(-1)[0]
+    }
+    res.status(200).json(userinfo)
   })
 
 

@@ -702,6 +702,7 @@ div.homeBody{
   flex-direction: column;
   justify-content: space-between;
   height:100vh;
+  background-color: #4444;
 }
 nav.HomeNav{
   position:relative;
@@ -788,7 +789,7 @@ div.recentEvent > p{
 }
 ul.eventList{
   margin:0;
-  padding:1rem 1.5rem;
+  padding:.5rem;
 }
 ul.eventList > li.eventItems{
   list-style-type: none;
@@ -803,9 +804,11 @@ ul.eventList > li.eventItems > img{
   margin-right: .75rem;
   width:30px;
   height:auto;
+  border-radius: 30px;
+  overflow: hidden;
 }
 ul.eventList > li.eventItems > span{
-  font-size: .8rem;
+  font-size: .75rem;
 }
 
 div.welcome > p{
@@ -898,13 +901,12 @@ font-size: 1.25rem;
 div.matchedPhoto{
   position: relative;
   min-height: 230px;
-  width:70%;
+  width:80%;
   margin: 0 auto;
 }
 div.matchedPhoto > span.matchPicWrapper{
   width: 150px;
   height: 150px;
-  border: 1px solid white;
   position: absolute;
   bottom: 0;
   border-radius: 30px;

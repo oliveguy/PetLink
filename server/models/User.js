@@ -33,7 +33,8 @@ const userSchema = new Schema(
       type: String
     },
     match:{
-      type:Array
+      from:{type:Array},
+      mine:{type:Array}
     },
     // PET
     pet_name:{

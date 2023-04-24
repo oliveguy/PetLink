@@ -15,6 +15,7 @@ function Welcome(){
   const [user_lname, setuser_lname] = useState('')
   const [URL ,setURL] = useState('')
   const [usersList, setUsersList] = useState([])
+  const [allMatch ,setAllMatch] = useState([])
 
   let userID = sessionStorage.user_email;
   useEffect(() => {
@@ -23,9 +24,22 @@ function Welcome(){
         setuser_fName(res.data.user.user_fName)
         setuser_lname(res.data.user.user_lname)
         setURL(res.data.serverURL)
+        // ALL NEW FRIENDS
         axios.get('/main/all')
         .then(res => {
           setUsersList(res.data)
+        })
+        .catch(error => {
+          console.error("GET Error:"+error);
+        });
+        // EVENT LISTING
+        axios.get(
+          `/main/matched`,
+          {params:{
+            reqEmail: userID
+          }})
+        .then(res => {
+          setAllMatch(res.data.allMine)
         })
         .catch(error => {
           console.error("GET Error:"+error);
@@ -42,18 +56,15 @@ function Welcome(){
         <div className='recentEvent'>
           <p>Recent Event</p>
           <ul className='eventList'>
-            <li className='eventItems'>
-              <img src="/img/icons/solid_heart.png" alt="" />
-              <span>Jiayu & Tori matched with you </span>
-            </li>
-            <li className='eventItems'>
-              <img src="/img/icons/solid_heart.png" alt="" />
-              <span>Collin & Henry matched with you </span>
-            </li>
-            <li className='eventItems'>
-              <img src="/img/icons/solid_heart.png" alt="" />
-              <span>Yumi & Jacky matched with you </span>
-            </li>
+            {allMatch.map((each, i)=>{
+              return(
+                <li className='eventItems' key={i}>
+                  <img src={`${URL}/${allMatch[i].userPhoto}`} alt={allMatch[i].userName} />
+                  <span>{allMatch[i].userName+` & `+allMatch[i].pet} matched with you </span>
+                </li>
+                )
+              })
+            }
           </ul>
         </div>
         <p>Find New Furry Friends</p>

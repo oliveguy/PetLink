@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
@@ -5,6 +6,7 @@ import axios from 'axios';
 function Matched(){
   let navigate = useNavigate();
   const [URL ,setURL] = useState('')
+  const [match ,setMatch] = useState([]);
 
   let userID = sessionStorage.user_email;
   useEffect(() => {
@@ -17,6 +19,7 @@ function Matched(){
             reqEmail: userID
           }})
         .then(res => {
+          setMatch([res.data])
           console.log(res.data)
         })
         .catch(error => {
@@ -27,28 +30,31 @@ function Matched(){
         console.log("POST Error: "+err)
       });
     }, []);
-
-
-
   return(
     <div className='homeComponent matched'>
-      <h3 className='MatchHeading'>It's a Match!</h3>
-      <div className='matchedText'>
-        <p>You matched with</p>
-        <p className='largeText'><b>dfs & sdfsd</b></p>
-      </div>
-      <div className='matchedPhoto'>
-        <span className='matchPicWrapper userPic'>
-          <img src="" alt="" className="matchedPhoto userPic"/>
-        </span>
-        <span className='matchPicWrapper petPic'>
-          <img src="" alt="" className="matchedPhoto petPic" />
-        </span>
-      </div>
-      <ul className='cta'>
-        <li>Send Message</li>
-        <li>Continue Search</li>
-      </ul>
+      {match.map((each,i)=>{
+        return(
+        <>
+          <h3 className='MatchHeading'>It's a Match!</h3>
+          <div className='matchedText'>
+            <p>You matched with</p>
+            <p className='largeText'><b>{match[i].mine.userName} & {match[i].mine.pet}</b></p>
+          </div>
+          <div className='matchedPhoto'>
+            <span className='matchPicWrapper userPic'>
+              <img src={`${URL}/${match[i].mine.userPhoto}`} alt={match[i].mine.userName} className="matchedPhoto userPic"/>
+            </span>
+            <span className='matchPicWrapper petPic'>
+              <img src={`${URL}/${match[i].mine.petPhoto}`} alt={match[i].mine.pet} className="matchedPhoto petPic" />
+            </span>
+          </div>
+          <ul className='cta'>
+            <li>Send Message</li>
+            <li onClick={()=>{navigate(-1)}}>Continue Search</li>
+          </ul>
+        </>
+        )
+      })}
     </div>
   )
 }
