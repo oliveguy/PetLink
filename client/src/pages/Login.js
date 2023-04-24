@@ -48,7 +48,7 @@ function Login(){
         <form onSubmit={handleLogin}>
           <h1 className="LS-title">Log In</h1>
           <span className={alert}>{loginMsg}</span>
-          <input onChange={(e)=>{setLoginID(e.target.value)}} value={loginID} type="text" placeholder="Your email" />
+          <input onChange={(e)=>{setLoginID(e.target.value)}} value={loginID} type="email" placeholder="Your email" />
           <input onChange={(e)=>{setLoginPWD(e.target.value)}} value={loginPWD} type="password" placeholder="Password" />
           <a href="#">Forgot password?</a>
           <input type="submit" value="Log In" />

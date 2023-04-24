@@ -51,7 +51,7 @@ function Signup(){
             onChange={(e)=>setEmail(e.target.value)}
             value={user_email}
             name="input-email"
-            type="text"
+            type="email"
             placeholder="Your email" />
           <input
             onChange={(e)=>setPWD(e.target.value)}

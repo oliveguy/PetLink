@@ -1,30 +1,35 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const router = express.Router();
-
 const http = require('http').createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(http);
+const router = express.Router();
 
 // const bcrypt = require("bcrypt");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const io = require("socket.io")(http,{
+  cors: {
+    origin:'*',
+    methods:["GET","POST"],
+  }
+});
+io.on('connection',(socket)=>{
+  console.log(`Connected ID=${socket.id}`)
+
+  socket.on('userMSG',(data)=>{
+    io.emit('broadcast',data)
+  })
+  socket.on('disconnect',()=>{
+    console.log(`Disconnect ID=${socket.id}`)
+  })
+})
 router.get("/",(req,res)=>{
-  res.render('chat.ejs')
+  console.log(res)
 })
 
 /////////// CHAT START
 
-io.on('connection',(socket)=>{
-  console.log('A user connected')
 
-  socket.on('userMSG',(data)=>{
-    console.log(`server recieved: ${data}`)
-    io.emit('broadcast',data)
-  })
-
-})
 /////////// CHAT END
 
 module.exports = router;

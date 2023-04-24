@@ -20,7 +20,6 @@ function Matched(){
           }})
         .then(res => {
           setMatch([res.data])
-          console.log(res.data)
         })
         .catch(error => {
           console.error("GET Error:"+error);
@@ -31,17 +30,17 @@ function Matched(){
       });
     }, []);
   return(
-    <div className='homeComponent matched'>
+    <div className='homeComponent matched cutted'>
       {match.map((each,i)=>{
         return(
-        <>
+        <div key={i} className='matched homeComponent'>
           <h3 className='MatchHeading'>It's a Match!</h3>
           <div className='matchedText'>
             <p>You matched with</p>
             <p className='largeText'><b>{match[i].mine.userName} & {match[i].mine.pet}</b></p>
           </div>
           <div className='matchedPhoto'>
-            <span className='matchPicWrapper userPic'>
+            <span className='matchPicWrapper userPic' >
               <img src={`${URL}/${match[i].mine.userPhoto}`} alt={match[i].mine.userName} className="matchedPhoto userPic"/>
             </span>
             <span className='matchPicWrapper petPic'>
@@ -49,10 +48,10 @@ function Matched(){
             </span>
           </div>
           <ul className='cta'>
-            <li>Send Message</li>
+            <li onClick={()=>{navigate('/home/chat')}}>Send Message</li>
             <li onClick={()=>{navigate(-1)}}>Continue Search</li>
           </ul>
-        </>
+        </div>
         )
       })}
     </div>

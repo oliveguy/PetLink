@@ -51,7 +51,16 @@ function Event(){
       </div>
       <h3>Chat History</h3>
       <div className='chatFistory eventArea'>
-
+      <ul className='eventList'>
+        {allMatch.map((each, i)=>{
+          return(
+            <li className='eventItems' key={i}>
+              <img src={`${URL}/${allMatch[i].userPhoto}`} alt={allMatch[i].userName} />
+              <span>{'Chat with '+allMatch[i].userName} </span>
+            </li>
+            )
+          })}
+        </ul>
       </div>
     </div>
   )

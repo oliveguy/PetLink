@@ -19,8 +19,11 @@ import Home from "./pages/Home.js";
   import Welcome from "./pages/Welcome.js";
   import Profile from "./pages/Profile.js";
   import Event from "./pages/Event.js";
+
   import Match from "./pages/Match.js";
   import Matched from "./pages/Matched.js";
+  import Chat from "./pages/Chat.js";
+
   import Info from "./pages/Info.js";
 
 function App() {
@@ -40,6 +43,7 @@ function App() {
           <Route path="event" element={<Event/>}/>
           <Route path="match" element={<Match/>}/>
           <Route path="matched" element={<Matched/>}/>
+          <Route path="chat" element={<Chat/>}/>
           <Route path="info" element={<Info/>}/>
         </Route>
       </Routes>

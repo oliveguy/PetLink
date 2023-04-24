@@ -60,7 +60,7 @@ function Welcome(){
               return(
                 <li className='eventItems' key={i}>
                   <img src={`${URL}/${allMatch[i].userPhoto}`} alt={allMatch[i].userName} />
-                  <span>{allMatch[i].userName+` & `+allMatch[i].pet} matched with you </span>
+                  <span><b>{allMatch[i].userName+` & `+allMatch[i].pet}</b> matched with you </span>
                 </li>
                 )
               })
