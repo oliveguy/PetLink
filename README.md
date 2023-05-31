@@ -8,6 +8,9 @@ Pets often never interact with other pets especially If they are the only child 
 ## Solutions
 With “PetLink” we wish to solve this issue by finding friends for other pets. It is an innovative idea to socialize animals to relieve anxiety and maintain positive animal mental health.
 
+## Screenshot
+![PetLink_1](https://github.com/oliveguy/live-chat-app/assets/103153516/45c54db4-8ad1-441f-bc58-72dc570671c0)
+
 ## Features
 ### Functionalities
 -	Sign up / Sign in
@@ -25,9 +28,6 @@ With “PetLink” we wish to solve this issue by finding friends for other pets
 -	Mobile app like UI and page transition without refreshing.
 -	Accordion sections to see comprehensive information.
 -	Real time chatting 
-
-## Screenshot
-![PetLink_1](https://github.com/oliveguy/live-chat-app/assets/103153516/45c54db4-8ad1-441f-bc58-72dc570671c0)
 
 ## Process
 ### Overview of my process
