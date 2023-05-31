@@ -53,7 +53,7 @@ With “PetLink” we wish to solve this issue by finding friends for other pets
 -	How to implement Mongoose creating database schema to build sign up and login functions
 -	How to use “bcrypt” to handle user’s confidential information
 -	How to build file upload functionality using Multer
--	How to deploy Node.js app in GCP(Google Cloud Platform) and write “.yaml” file.
+-	How to deploy Node.js app on GCP(Google Cloud Platform) and write “.yaml” file.
 -	How to set environmental variables using “dotenv” library
 -	How to build CSR(Client Side Rendering) by using react-router-dom
 -	React Hooks (useEffect and useState) to build user interface and communication with server(AXIOS)
