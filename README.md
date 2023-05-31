@@ -42,10 +42,10 @@ With “PetLink” we wish to solve this issue by finding friends for other pets
 ### Built with
 ![React](https://img.shields.io/badge/-React-222222?style=for-the-badge&logo=react)
 ![Express](https://img.shields.io/badge/-Express-blue?style=for-the-badge&logo=Express&logoColor=white)
-![Node](https://img.shields.io/badge/-Nodejs-black?style=for-the-badge&logo=Node.js&logoColor=white)
+![Node](https://img.shields.io/badge/-Nodejs-blue?style=for-the-badge&logo=Node.js&logoColor=white)
 ![Mongoose](https://img.shields.io/badge/-Mongoose-green?style=for-the-badge&logo=Mongoose&logoColor=white)
 ![Axios](https://img.shields.io/badge/-Axios-222222?style=for-the-badge&logo=Axios)
-![Socket.io](https://img.shields.io/badge/-Socket.io-black?style=for-the-badge&logo=Socket.io&logoColor=white)
+![Socket.io](https://img.shields.io/badge/-Socket.io-red?style=for-the-badge&logo=Socket.io&logoColor=white)
 
 ## What I’ve learned
 -	How to use webSocket, communication protocol, providing full-duplex channel over single TCP connection by using Socket.io
