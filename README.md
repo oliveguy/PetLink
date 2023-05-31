@@ -26,10 +26,8 @@ With “PetLink” we wish to solve this issue by finding friends for other pets
 -	Accordion sections to see comprehensive information.
 -	Real time chatting 
 
-## Contributions
--	Create APIs to respond requests from front-end and process user’s data.
--	Create database schema and model using Mongoose.
--	Build UI and screen in accordance with high fidelity wireframe. 
+## Screenshot
+![PetLink_1](https://github.com/oliveguy/live-chat-app/assets/103153516/45c54db4-8ad1-441f-bc58-72dc570671c0)
 
 ## Process
 ### Overview of my process
@@ -41,13 +39,14 @@ With “PetLink” we wish to solve this issue by finding friends for other pets
 
 ### Built with
 ![React](https://img.shields.io/badge/-React-222222?style=for-the-badge&logo=react)
-![Express](https://img.shields.io/badge/-Express-blue?style=for-the-badge&logo=Express&logoColor=white)
+![Express](https://img.shields.io/badge/-Express-darkblue?style=for-the-badge&logo=Express&logoColor=white)
 ![Node](https://img.shields.io/badge/-Nodejs-blue?style=for-the-badge&logo=Node.js&logoColor=white)
 ![Mongoose](https://img.shields.io/badge/-Mongoose-green?style=for-the-badge&logo=Mongoose&logoColor=white)
 ![Axios](https://img.shields.io/badge/-Axios-222222?style=for-the-badge&logo=Axios)
 ![Socket.io](https://img.shields.io/badge/-Socket.io-red?style=for-the-badge&logo=Socket.io&logoColor=white)
 
 ## What I’ve learned
+- MVC design pattern using MERN stack
 -	How to use webSocket, communication protocol, providing full-duplex channel over single TCP connection by using Socket.io
 -	CORS
 -	How to create RESTful APIs
@@ -63,6 +62,12 @@ With “PetLink” we wish to solve this issue by finding friends for other pets
 -	One to one chatting
 -	Save session information into server
 -	Animal rescue page
+
+
+## Contributions
+-	Create APIs to respond requests from front-end and process user’s data.
+-	Create database schema and model using Mongoose.
+-	Build UI and screen in accordance with high fidelity wireframe. 
 
 ## Author
 -	Sunghyun Park (React.js and back-end)
